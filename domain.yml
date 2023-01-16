@@ -1,0 +1,242 @@
+# yamllint disable-line rule:document-start
+version: "3.1"
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+  - greet
+  - goodbye
+  - ask_about_probation_gpa
+  - ask_about_gpa_grade
+  - ask_about_probation
+  - ask_about_honours
+  - ask_about_internship_obligatory
+  - ask_about_intership_details
+  - ask_about_attendance
+  - ask_about_attendance_excuse
+  - ask_about_excuse_submission
+  - ask_about_plagiarism
+  - ask_about_studying
+  - ask_about_projects
+  - ask_about_gpa_importance
+  - ask_about_finding_internship
+  - ask_about_volunteering
+  - ask_about_internship_submission
+  - ask_about_summer_attendance
+  - ask_about_summer_grading
+  - ask_about_internship_duration
+  - ask_about_studying_for_exams
+  - ask_about_summer_general
+  - ask_about_summer_courses_admission
+  - ask_about_traveling_to_berlin
+  - ask_about_cv_preparation
+
+
+entities:
+  - gpa
+slots:
+  gpa:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: gpa
+actions:
+  - action_gpa_probation_calc
+  - action_gpa_calc
+  - action_honour_calc
+  - utter_greet
+  - utter_goodbye
+  - utter_probation_gpa
+  - utter_gpa_ranges
+  - utter_probation
+  - utter_honours_ranges
+  - utter_internship_obligatory
+  - utter_internship_general_details
+  - utter_attendance_policy
+  - utter_attendance_excuse
+  - utter_attendance_excuse_submission
+  - utter_plagiarism
+  - utter_studying
+  - utter_projects
+  - utter_gpa_importance
+  - utter_internship_finding
+  - utter_volunteering
+  - utter_summer_attendance
+  - utter_summer_grading
+  - utter_summer_general
+  - utter_summer_course_admission
+  - utter_studying_exams
+  - utter_traveling_to_berlin
+  - utter_internship_duration
+  - utter_internship_submission
+  - utter_cv_preparation
+  - utter_default
+
+
+responses:
+  utter_greet:
+    - text: "Hey! How are you?"
+  utter_goodbye:
+    - text: "Bye"
+  utter_probation_gpa:
+    - text: "A student is under Probation if his gpa falls below 3.69
+       so if your gpa is 3.7 or below is considered under Probation."
+  utter_gpa_ranges:
+    - text: "If your gpa falls between 0.7 and 1.54 then your grade is
+       considered Excellent (A) and if its falls between 1.55 and 2.54
+       then it is considered Very Good (B) and if it is between 2.55
+       and 3.54 then it is considered Good (C) and if it is between 3.55
+       and 3.7 then it is Satisfactory (D) and if it is less than 3.7
+       then you are under Probation"
+  utter_probation:
+    - text: "A student shall be given two subsequent terms for enrollment on
+       probationary status, At the conclusion of the two semesters, a student
+       who has not achieved a cumulative GPA better than 3.7 shall be asked
+       to transfer to another university."
+  utter_honours_ranges:
+    - text: "If your gpa falls between 0.7 and 0.99 then you are considered a 
+       Highest Honour student and if its falls between 1 and 1.29
+       then you are considered a Higher Honours student and if it is between 1.3
+       and 1.69 then you are considered a Honour student."
+  utter_internship_obligatory: 
+    - text: "The Internship program is Obligatory; it is part of the curriculum."
+  utter_internship_general_details:
+    - text: "In General, All students are eligible to start an internship after the
+             finalization of the fourth semester and the internship must be related
+             to your field of study, it has to be practical work experience where
+             it doesn't involve: (sessions and/or workshops). You can find all details here,
+             https://student.guc.edu.eg/intranet/SCAD%20Office/Internship%20Evaluation%20Form/GUC%20Internship%20-%20General%20Guidelines.pdf"
+  utter_attendance_policy:
+    - text: "Students are expected to attend the university on a full-time basis during each semester.
+             Attendance is checked during seminars, tutorials and labs and the student's attendance status
+             is announced on real-time basis to each students but lectures are not checked as students are expected
+             to be responsible for their own attendance when it comes to lectures.
+             Attendance checks take place at any time from the beginning or end of seminars, tutorials and
+             labs. Students must attend at least 75% of the tutorials and practical labs. If absence exceeds
+             the allowed percentage: 25% (either excused - as the excuse does not mean that the content is
+             delivered- or unexcused) in the same course, the student will not be allowed to sit for the
+             exam of the relevant subject and will have to drop the course and retake the course when
+             available. In the event of an absence (excused or unexcused): No make up will be given for the
+             missed assignments or quizzes unless the Doctor himself/herself asssigns a make-up, The lecturer will
+             select best 2 out of 3 Or 3 out of 4 quizzes or assignments for the
+             benefit of the student and in case of absence during a quiz or an assignment, the
+             student will miss the opportunity of selecting the best quizzes or assignments and
+             will be evaluated on the remaining quizzes and assignments.
+             If a student attends other than his/her scheduled classes, the attendance, assignments and
+             quizzes will not be counted."
+  utter_attendance_excuse:
+    - text: "Official accepted excuses will only affect the payment of the course and not the results as the
+             academic quality of GUC students depends on attendance and participation in the teaching /
+             learning process to achieve the objectives of the courses.
+             Official accepted excuses by the University are limited to:
+             Medical excuse from the university clinic, Death of a close relative. Limited to father, mother,
+             brother or sister, and Events and Competitions:
+             a. National
+             b. Regional
+             c. International
+             d. Events and Competitions Representing GUC
+             A student who is absent with an accepted excuse will be dealt with as follows:
+              - Overall absence should not exceed 25%
+              - Must submit official excuse and must be approved by the university
+              - Will be counted as absent with excuse
+              - Will receive warnings if s/he exceeds 25%, and will be informed that s/he is not
+                registered in the course and will have to retake the course when it is available next time.
+              - Will not pay for the repeated course. In case of unexcued absence
+              A student will be dealt with using the same way as for
+              excused absence mentioned above however, the student will have to pay for the repeated course
+              If the student has a mix of excused and unexcused absence, payment for the repeated course
+              will depend on the percentage of excused versus the unexcused absence. If the percentage of
+              the unexcused absence is larger, the student will have to pay. If the percentage of the excused
+              absence is larger, the student will not pay.
+              Students who exceed the unexcused/excused percentage of absence in the Practical Labs,
+              but do not exceed the limit of absence in Tutorials and Lectures will be permitted to only
+              the theoretical final exam and not to the practical final exam within the following two
+              semesters. The grade of the whole course will be “IP” (Incomplete Practical) and the student will
+              have to attend only the practical course again whenever is available.
+              The grades of the theoretical part will be kept and added to the grades of the practical part
+              when attended and the course grade is then calculated and announced.
+              The grades of the practical part will be kept and added to the grades of the theoretical part
+              when attended and the course grade is then calculated and announced."
+  utter_attendance_excuse_submission:
+    - text: "Official excuses must be submitted to the Students Affairs for approval.
+             In case of illness or accidents, the absence form must be filled out and submitted
+             with the supporting documents within one week of the incident to Students Affairs.
+             If one week passes without an absence form filled out, the student, or one of his
+             family members must show proof that there were extreme circumstances
+             preventing submission of the absence form. Medical excuses must be approved by the
+             University Doctor (medical check up may be needed and the University Doctor has the
+             right to approve or reject the excuse)." 
+  utter_plagiarism:
+    - text: "You are not allowed to copy anything without explicit acknowledgement of the sources.
+             Students always have to acknowledge the source through: Quoting, Paraphrasing,
+             General Indebtedness. Please note that copying the work of another student is no different
+             from plagiarizing published sources. Students who plagiarise work and students who knowingly allow
+             their work to be plagiarised will be subject to penalties. Please note that plagiarism seriously damages
+             ability to pass exams and may result in serious cases in suspension or dismissal."
+  utter_studying:
+    - text: "Try to collect as much information during the lectures and the tutorials as much as you can,
+             this will save you time studying.
+             listing all the content you have taken so far, mark them with your level of understanding;
+             attended or not attended, how much you understand that lecture for example.
+             Then start listing your quizzes/projects/assignments/etc. Including their weights,
+             deadlines, and how much time they need."
+  utter_projects:
+    - text: "Having extra side projects for yourself definitely gives you a bonus while applying for jobs, but it's not a necessity."
+
+  utter_gpa_importance:
+    - text: "Your GPA indicates your academic performance and how committed to your study you
+             are/were as a student. It shows responsibility and how well you understand the concepts studied.
+             Some fields require to have better GPAs than the others, for example when applying for a master's abroad.
+             And some focus more on technical skills."
+
+  utter_internship_finding:
+    - text: "The SCAD office sends an email with the available internships every year,
+             and organizes a startup fair and an employment fair every year, which gives you a chance to explore the market."
+            
+  utter_volunteering:
+    - text: "An email and a Facebook post are usually sent with open opportunities"
+
+  utter_summer_attendance:
+    - text: "You must attend 75% of all classes in the university including lectures unlike in normal sessions"
+
+  utter_summer_grading:
+   - text: "In summer a course has exactly the same grade distribution (quizzes, assignments, project),
+            but has only one final exam with a weight equals to (midterm + final)"
+
+  utter_summer_general:
+    - text: "There are 2 rounds in the summer semester. Each round you can take a maximum of 10 Credit hours.
+             A summer round is 3 weeks, and the final is in the 4th week.
+             Checkout the rest of summer guidelines. LINK"
+
+  utter_summer_course_admission:
+    - text: "A course is listed only if it has a minimum of 25 students.
+             Apply to a course here, LINK"
+            
+  utter_studying_exams:
+    - text: "Solve previous years Exams made by the SAME Dr.
+             Focus on content that you did not get examed in (Quizzes, midterm, assignments)."
+
+  utter_traveling_to_berlin:
+    - text: "A minimum of 25 students are needed to open a group in Berlin.
+             Check Berlin Semester abroad time plan for admission and fees, LINK."
+
+  utter_internship_duration:
+    - text: "If you are an Engineering or Apllied Arts student then you are required a total of 12 weeks
+             and at least four weeks should be performed consecutively per one internship to be counted.
+             Other faculties rewuire only 6 weeks in total could be conducted in a full six weeks consecutive
+             or divide the period as 2 consecutive weeks or 4 consecutive weeks."
+
+  utter_internship_submission:
+    - text: "Fill in the form found on the intranet when the internship cycle is open which
+             is announced by the SCAD office through email, and get that form stamped from the place you did the internship in.
+             If there is no stamp, then a stamped certificat from the place is enough.
+             If there is no certificate, then an email from the company domain specifying your
+             (name, id, number of working hours per day, number of working days per week) is required."
+
+  utter_cv_preparation:
+    - text: "Work on side projects to substitute for your lack of experience and participate in extracurricular and student activities.
+             Adding your LinkedIn and keep it updated."
+  
+  utter_default:
+    - text: "I'm sorry, I didn't quite understand that :("
